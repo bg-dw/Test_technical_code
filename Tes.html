@@ -1,0 +1,34 @@
+<html>
+    <head></head>
+    <body>
+        <input type="number"id="inp" placeholder="Input Angka"><br>
+        <button onclick="gen('1')">Generate Segitiga</button>
+        <button onclick="gen('2')">Generate Bilangan Ganjil</button>
+        <button onclick="gen('3')">Generate Bilangan Prima</button>
+        <h2>Result :<br>
+            <label id="canvas">
+                <span id="hasil"></span>
+            </label>
+        </h2>
+        <script src="/jquery-3.6.3.min.js"></script>
+        <script>
+            var x = $('#inp').val();
+            function gen(pil){
+                var i;
+                $.ajax({
+                        url : "proses.php/ans/"+x+"/"+pil,
+                        dataType : 'json',
+                        success : function(data){
+                            $('#canva').text();
+                            for(i=0;i<data.length();i++){
+                                $('#hasil').text(data[i]);
+                            }
+                        },error:function(data){
+                            console.log(data.responseText);
+                        }
+                    }
+                );
+            }
+        </script>
+    </body>
+</html>
